@@ -82,35 +82,35 @@ class ScheduleController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-        'start_time' => 'required',
-        'end_time' => 'required',
-        'day' => 'required',
-        'laboratory_id' => 'required',
-        'user_id' => 'required',
-    ]);
+            'start_time' => 'required',
+            'end_time' => 'required',
+            'day' => 'required',
+            'laboratory_id' => 'required',
+            'user_id' => 'required',
+        ]);
 
-    $schedule = Schedule::find($id);
-    $schedule->start_time = $request->get('start_time');
-    $schedule->end_time = $request->get('end_time');
-    $schedule->day = $request->get('day');
-    $schedule->laboratory_id = $request->get('laboratory_id');
-    $schedule->user_id = $request->get('user_id');
-    $schedule->save();
+        $schedule = Schedule::find($id);
+        $schedule->start_time = $request->get('start_time');
+        $schedule->end_time = $request->get('end_time');
+        $schedule->day = $request->get('day');
+        $schedule->laboratory_id = $request->get('laboratory_id');
+        $schedule->user_id = $request->get('user_id');
+        $schedule->save();
 
-    return redirect('/schedules')->with('success', 'Schedule has been updated');
-}
+        return redirect('/schedules')->with('success', 'Schedule has been updated');
+    }
 
-/**
- * Remove the specified schedule from storage.
- *
- * @param  int  $id
- * @return \Illuminate\Http\RedirectResponse
- */
-public function destroy($id)
-{
-    $schedule = Schedule::find($id);
-    $schedule->delete();
+    /**
+     * Remove the specified schedule from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy($id)
+    {
+        $schedule = Schedule::find($id);
+        $schedule->delete();
 
-    return redirect('/schedules')->with('success', 'Schedule has been deleted');
-}
+        return redirect('/schedules')->with('success', 'Schedule has been deleted');
+    }
 }
