@@ -19,3 +19,12 @@ class Authenticate extends Middleware
         }
     }
 }
+
+function handle($request, Closure $next, $guard = null)
+{
+  if (Auth::guard($guard)->guest()) {
+    return redirect('/login');
+  }
+
+  return $next($request);
+}

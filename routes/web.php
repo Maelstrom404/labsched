@@ -18,6 +18,7 @@ Route::get('/', function () {
 });
 
 Route::post('/login', 'AuthController@login');
+Route::get('/protected', 'ProtectedController@index')->middleware('auth');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {

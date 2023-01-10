@@ -15,12 +15,32 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
-        $credentials = $request->only(['email', 'password']);
+        // Validate the request data
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+          ]);
+
+          $credentials = $request->only('email', 'password');
+          if (Auth::attempt($credentials)) {
+
+            // If the user is authenticated, redirect them to the desired protected page
+          return redirect()->intended('/protected');
+          
+          } else {
+            // If the user's credentials are invalid, return an error message
+           return redirect()->back()->withErrors([
+          'message' => 'Invalid email or password',
+            ]);
+          }
+        
+       /* $credentials = $request->only(['email', 'password']);
 
         if (Auth::attempt($credentials)) {
             return redirect()->intended('/dashboard');
         }
 
-        return redirect('/')->withErrors(['Invalid email or password']);
+        return redirect('/')->withErrors(['Invalid email or password']);*/
     }
+
 }
