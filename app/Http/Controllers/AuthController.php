@@ -16,11 +16,15 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->only(['email', 'password']);
-
+        //dd($credentials);
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('/dashboard');
+            $request->session()->regenerate();
+            return redirect()->route('dashboard');
+            dd('here');
         }
 
-        return redirect('/')->withErrors(['Invalid email or password']);
+        return redirect('/')->withErrors([ 
+            'email' => 'The provided credentials do not match our records.' 
+        ]);
     }
 }
