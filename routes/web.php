@@ -17,13 +17,7 @@ Route::get('/', function () {
     return view('login');
 });
 
-<<<<<<< HEAD
 Route::post('/login', [AuthController::class, 'login'])->name('login');
-=======
-Route::post('/login', 'AuthController@login');
-Route::get('/protected', 'ProtectedController@index')->middleware('auth');
-
->>>>>>> 95a86cb10b842609fb26fa6c7953194303871332
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
         return view('helloworld');
