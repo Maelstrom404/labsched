@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Schedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -67,5 +68,10 @@ class UserController extends Controller
     {
         $user->delete();
         return redirect()->route('users.index');
+    }
+
+    public function dashboard(){
+        $schedules = Schedule::where('faculty_id', auth()->user()->id)->get();
+        return view('dashboard', compact('schedules'));
     }
 }

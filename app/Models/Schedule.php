@@ -7,13 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Schedule extends Model
 {
+    protected $table = 'schedule';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'start_time', 'end_time', 'day', 'faculty_id', 'lab_id',
+        'start_time', 'end_time', 'days', 'faculty_id', 'laboratory',
     ];
 
     /**
