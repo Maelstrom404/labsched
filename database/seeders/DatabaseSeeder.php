@@ -45,5 +45,25 @@ class DatabaseSeeder extends Seeder
             'created_at'=> Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
+
+        Schedule::create([
+            'start_time' => '00:00',
+            'end_time' => '23:59',
+            'days'=> 'Friday',
+            'faculty_id'=>2,
+            'laboratory'=>'lab2',
+            'created_at'=> Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+
+        Schedule::create([
+            'start_time' => '00:00',
+            'end_time' => '23:59',
+            'days'=> 'Friday',
+            'faculty_id'=>1,
+            'laboratory'=>'lab2',
+            'created_at'=> Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
     }
 }
